@@ -50,6 +50,8 @@ public enum AttributeConst {
     REP_TITLE("title"),
     REP_CONTENT("content_msg");
 
+
+
     private final String text;
     private final Integer i;
 

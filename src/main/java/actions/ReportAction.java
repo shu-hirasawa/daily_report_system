@@ -234,4 +234,16 @@ public class ReportAction extends ActionBase {
         }
     }
 
+    /**
+     * 日報検索を行う
+
+    public void serch() throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+        PreparedStatement st = con.prepareStatement
+        ("select * from product where name like ?");
+        st.setString(1,"%"+keyword+"%");
+
+
+    }
+*/
 }

@@ -16,6 +16,13 @@
             </div>
         </c:if>
         <h2>日報　一覧</h2>
+
+        <p>検索キーワードを入力してください</p>
+            <form method="POST" action="<c:url value='?action=${actRep}&command=${commIdx}' />">
+            <input type="text" name="keyword">
+            <input type="submit" value="検索">
+            </form>
+
         <table id="report_list">
             <tbody>
                 <tr>
