@@ -235,15 +235,37 @@ public class ReportAction extends ActionBase {
     }
 
     /**
-     * 日報検索を行う
+     * 日報一覧で検索を行う
+     * @throws ServletException
+     * @throws IOException
+     */
 
-    public void serch() throws ServletException, IOException {
-        String keyword = request.getParameter("keyword");
-        PreparedStatement st = con.prepareStatement
-        ("select * from product where name like ?");
-        st.setString(1,"%"+keyword+"%");
+    public void serchIndex() throws ServletException, IOException {
+        //検索窓に入力されたkeywordを引数として定義
+         String keyword = request.getParameter("keyword");
 
+         //指定されたページ数の一覧画面に表示する日報データを取得
+         int page = getPage();
+         List<ReportView> reportsSerch = service.getSerchPerPage(keyword, page);
 
+        //keywordに該当した従業員の日報データの件数を取得
+        long serchReportsCount = service.countSerchMine(keyword);
+
+        putRequestScope(AttributeConst.REPORTS, reportsSerch); //取得した日報データ
+        putRequestScope(AttributeConst.REP_COUNT, serchReportsCount); //取得した日報データの件数
+        putRequestScope(AttributeConst.PAGE, page); //ページ数
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
+        putRequestScope(AttributeConst.SER_KEYWORD, keyword);
+
+         //セッションにフラッシュメッセージが設定されている場合はリクエストスコープに移し替え、セッションからは削除する
+        String flush = getSessionScope(AttributeConst.FLUSH);
+        if (flush != null) {
+            putRequestScope(AttributeConst.FLUSH, flush);
+            removeSessionScope(AttributeConst.FLUSH);
+        }
+
+        //一覧画面を表示
+        forward(ForwardConst.FW_REP_INDEX);
     }
-*/
 }
+

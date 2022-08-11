@@ -8,6 +8,8 @@
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
 
+<c:set var="commSer" value="${ForwardConst.CMD_SERCH_INDEX.getValue()}" />
+
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:if test="${flush != null}">
@@ -18,8 +20,8 @@
         <h2>日報　一覧</h2>
 
         <p>検索キーワードを入力してください</p>
-            <form method="POST" action="<c:url value='?action=${actRep}&command=${commIdx}' />">
-            <input type="text" name="keyword">
+            <form method="POST" action="<c:url value='?action=${actRep}&command=${commSer}' />">
+            <input type="text" name="keyword" value="${keyword}">
             <input type="submit" value="検索">
             </form>
 
@@ -52,7 +54,7 @@
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='?action=${actRep}&command=${commIdx}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='?action=${actRep}&command=${commSer}&page=${i}&keyword=${keyword}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

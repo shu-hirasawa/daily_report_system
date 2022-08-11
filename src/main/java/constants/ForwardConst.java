@@ -2,7 +2,6 @@ package constants;
 
 /**
  * リクエストパラメーターの変数名、変数値、jspファイルの名前等画面遷移に関わる値を定義するEnumクラス
- *
  */
 public enum ForwardConst {
 
@@ -26,6 +25,8 @@ public enum ForwardConst {
     CMD_EDIT("edit"),
     CMD_UPDATE("update"),
     CMD_DESTROY("destroy"),
+
+    CMD_SERCH_INDEX("serchIndex"),
 
     //jsp
     FW_ERR_UNKNOWN("error/unknown"),
